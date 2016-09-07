@@ -5,6 +5,10 @@ Created on Wed Feb 10 01:57:34 2016
 Physical quantities with units
 Version 3: using Python lists to implement dimension array
 so that you don't have to use numpy
+
+Adding new feature: automatically default to using an array for the "factor" if the array has no units
+this will save space and allow non-dimensionalization of numpy arrays
+
 @author: Ariel Sommer
 """
 def _isQuantity(v):
