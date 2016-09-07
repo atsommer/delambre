@@ -45,10 +45,17 @@ class Quantity(object):
             if not any(p.dims):#now dimensionless
                 p=p.f
         else:#Not a Quantity object
-            if hasattr(other,"__len__"):#array-like
+            if hasattr(other,"__getitem__"):#array-like
                 if hasattr(other,"dtype"):#numpy array
-                    return other*self
+                    if other.dtype == "O":#array of objects
+                        return other*self #let numpy do element-wise multiply
+                    else:#array of numbers possibly
+                        #other is not a quantity so assume it's unitless
+                        p = Quantity(other*self.f, self.dims, self.units)
                 else:
+                    #if the contents of other are all not quantities, treat them as unitless
+#                    if all([not _isQuantity(o) for o in other]):
+#                        p = Quantity([self.f*o for o in other], self.dims, self.units)
                     return [self*o for o in other]
             else: #scalar multiplication
                 p = Quantity(other*self.f, self.dims,self.units)
@@ -170,17 +177,21 @@ def tests1():
     try: #numpy stuff
         import numpy as np
         print( "numpy tests:")
-        print( np.real(q1) )#converts to ndarray, then calls .real on it (doesn't work)
+        print("1: "+ str(np.real(q1)) )#converts to ndarray, then calls .real on it (doesn't work)
         v=[q1,q2]
         v = np.array(v)
-        print( repr(v) )
-        print( repr(np.array(v/q2,dtype=np.complex))) #convert to array with complex data
+        print("2: "+ repr(v) )
+        print("3: "+ repr(np.array(v/q2,dtype=np.complex))) #convert to array with complex data
         
-        print( v.real ) #doesn't work because ndarray.real doesn't work on object data
+        print("4: "+ str( v.real )) #doesn't work because ndarray.real doesn't work on object data
         x= np.array(v/q2)
-        print( x )
+        print("5: " +str(x) )
         y = np.array([1,2])*s
         s + y
+        z=s*np.array([1.,2.])
+        print("6: "+repr(z))
+        z2= np.array([1.,2.])*s
+        print("7: "+repr(z2))
     except ImportError:
         print( "Skipping numpy tests; no numpy installed" )
     print( "Comparison tests:" )
@@ -205,7 +216,7 @@ def tests1():
     #taking real parts of ndarrays with Quantity data:
     #1. find code for ndarray.real to see why it doesn't work
     #2. or, make Quantity a subclass of complex. requires overriding .real and .imag to return objects
-    
+
+
 if __name__=="__main__":
     tests1()
-    
