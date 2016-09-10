@@ -13,6 +13,13 @@ this will save space and allow non-dimensionalization of numpy arrays
 """
 def _isQuantity(v):
         return hasattr(v,"IS_QUANTITY")
+
+def try_int(f):
+        i = int(f)
+        if i == f:
+            return i
+        else:
+            return f
       
 class Quantity(object):
     """ 
@@ -145,14 +152,14 @@ class Quantity(object):
     
     def conjugate(self):
         return Quantity(self.f.conjugate(), self.dims, self.units)
-        
+            
     def __str__(self):
         s=str(self.f)
         for i in range(len(self.dims)):
             if self.dims[i]:
                 s += " "+self.units[i]
                 if self.dims[i] != 1:
-                    s += "^"+str(self.dims[i])
+                    s += "^"+str(try_int(self.dims[i]))
         return s
         
 #    def __repr__(self):
