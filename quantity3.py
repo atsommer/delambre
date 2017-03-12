@@ -11,6 +11,8 @@ this will save space and allow non-dimensionalization of numpy arrays
 
 @author: Ariel Sommer
 """
+import inspect
+
 def _isQuantity(v):
         return hasattr(v,"IS_QUANTITY")
 
@@ -42,15 +44,18 @@ class Quantity(object):
         self.units=units # a list of strings giving the names of the dimensions
         self.IS_QUANTITY = True
         
-    
+    def dimensionless(self):
+        return not any(self.dims)
+        
     def __mul__(self,other):
         if _isQuantity(other):
             if self.units != other.units:
                 raise ValueError("Multiply needs identical unit systems")
             newdims = [self.dims[i] + other.dims[i] for i in range(len(self.dims))]
             p = Quantity(other.f*self.f, newdims, self.units)
-            if not any(p.dims):#now dimensionless
+            if not any(p.dims) and not hasattr(self.f,"__getitem__"):#now dimensionless and not an array
                 p=p.f
+            return p
         else:#Not a Quantity object
             if hasattr(other,"__getitem__"):#array-like
                 if hasattr(other,"dtype"):#numpy array
@@ -58,15 +63,27 @@ class Quantity(object):
                         return other*self #let numpy do element-wise multiply
                     else:#array of numbers possibly
                         #other is not a quantity so assume it's unitless
-                        p = Quantity(other*self.f, self.dims, self.units)
-                else:
+                        return Quantity(other*self.f, self.dims, self.units)
+                else: #regular list
                     #if the contents of other are all not quantities, treat them as unitless
 #                    if all([not _isQuantity(o) for o in other]):
 #                        p = Quantity([self.f*o for o in other], self.dims, self.units)
                     return [self*o for o in other]
+                    
             else: #scalar multiplication
-                p = Quantity(other*self.f, self.dims,self.units)
-        return p
+                #is numpy doing this?
+#                stack = inspect.stack()
+#                try:
+#                    print(stack[1][0].f_locals)
+#                    print(stack[1])
+#                    
+##                    the_class = stack[1][0].f_locals["self"].__class__
+##                    the_method = stack[1][0].f_code.co_name
+##                    print("I was called by {}.{}()".format(str(the_class), the_method))
+#                except Exception as e:
+#                    print(e)
+                return Quantity(other*self.f, self.dims,self.units)
+#        return p
     
     def __neg__(self):#unary negation
         return Quantity(-self.f, self.dims,self.units)
@@ -91,7 +108,7 @@ class Quantity(object):
             if self._sameUnits(other):
                 return Quantity(self.f+other.f, self.dims,self.units)
             else:
-                raise ValueError("Quantity addition--units must agree "+str(other)+"\n"+str(self))
+                raise ValueError("Quantity addition--unit systems must agree "+str(other)+"\n"+str(self))
         elif hasattr(other,"__len__"):#array-like
             if hasattr(other,"dtype"):#numpy array
                 return other+self
@@ -99,6 +116,8 @@ class Quantity(object):
                 return [self+o for o in other]
         elif other == 0.0:
             return Quantity(self.f, self.dims, self.units)
+        elif not any(self.dims): #dimensionless
+            return Quantity(self.f + other, self.dims, self.units)
         else:
             raise ValueError("Quantity addition--units must agree "+str(other)+"\n"+str(self))
 
