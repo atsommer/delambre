@@ -39,7 +39,7 @@ nanosecond = ns = 1e-9*second
 picosecond = ps = 1e-12*second
 femtosecond = fs = 1e-15*second
 
-minute = 60*second
+min = minute = 60*second
 hr = hour = 60*minute
 day = 24*hour
 week = 7*day
