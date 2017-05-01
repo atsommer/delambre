@@ -102,14 +102,18 @@ c = speedoflight = 299792458.0 * meter / second
 mu0 = 4.0*pi*1.0e-7 * meter*kg*second**-2*Amp**-2
 epsilon0 = 1.0/(mu0*c**2)
 e = elementary_chage = 1.6021766208e-19 * Coulomb
-a0 = bohr = 5.29e-11 * meter #Bohr radius
-hartree = 4.35974434e-18 * Joule
+
+
 mRb87 = 1.443160648e-25 * kg
 me = electron_mass = 9.10938356e-31 * kg
 mp = proton_mass = 1.672621777e-27 * kg
 mn = neutron_mass = 1.674927471e-27 * kg
 amu = atom_mass_unit = 1.660539040e-27 * kg
+
 alpha = e**2*mu0*c/(4*pi*hbar)
+hartree = me * (e**2/(4*pi*epsilon0*hbar))**2
+#hartree = 4.35974434e-18 * Joule
+a0 = bohr = hbar/(me*c*alpha)#5.29e-11 * meter #Bohr radius
 muB = bohr_magneton = e*hbar/(2*me)
 G = gravitational_constant = 6.67408e-11 *N*m**2/kg**2
 
