@@ -104,11 +104,17 @@ epsilon0 = 1.0/(mu0*c**2)
 e = elementary_chage = 1.6021766208e-19 * Coulomb
 
 
-mRb87 = 1.443160648e-25 * kg
 me = electron_mass = 9.10938356e-31 * kg
 mp = proton_mass = 1.672621777e-27 * kg
 mn = neutron_mass = 1.674927471e-27 * kg
 amu = atom_mass_unit = 1.660539040e-27 * kg
+
+mRb87 = 1.443160648e-25 * kg
+mLi6 = 9.9883414e-27 * kg
+mNa23 = 0.381754035e-25 * kg
+mK39 = 38.96370668*amu
+mK40 = 39.96399848*amu
+mK41 = 40.96182576*amu
 
 alpha = e**2*mu0*c/(4*pi*hbar)
 hartree = me * (e**2/(4*pi*epsilon0*hbar))**2

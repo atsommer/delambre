@@ -53,7 +53,7 @@ class Quantity(object):
                 raise ValueError("Multiply needs identical unit systems")
             newdims = [self.dims[i] + other.dims[i] for i in range(len(self.dims))]
             p = Quantity(other.f*self.f, newdims, self.units)
-            if not any(p.dims) and not hasattr(self.f,"__getitem__"):#now dimensionless and not an array
+            if not any(p.dims) : #and not hasattr(self.f,"__getitem__"):#now dimensionless and not an array
                 p=p.f
             return p
         else:#Not a Quantity object
