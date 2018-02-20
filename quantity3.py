@@ -167,7 +167,8 @@ class Quantity(object):
         elif name=="imag":
             return Quantity(self.f.imag, self.dims, self.units)
         else:
-            return object.__getattr__(self,name)
+            #return object.__getattr__(self,name) #fall back on base class attribute; bad: base class doesn't implement that function
+            raise AttributeError("Quantity objects don't have the attribute "+name)
     
     def conjugate(self):
         return Quantity(self.f.conjugate(), self.dims, self.units)
