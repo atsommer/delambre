@@ -112,7 +112,7 @@ fW = 1e-15*W
 ## Physical constants
 boltzmann = kB = 1.380653e-23 * Joule / Kelvin
 hbar = 1.054571800e-34 * kg * meter**2 / second
-planck = hPlanck = 2*pi*hbar
+planck = hPlanck = h = 2*pi*hbar
 c = speedoflight = 299792458.0 * meter / second
 mu0 = 4.0*pi*1.0e-7 * meter*kg*second**-2*Amp**-2
 epsilon0 = 1.0/(mu0*c**2)
