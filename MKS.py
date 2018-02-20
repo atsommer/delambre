@@ -59,6 +59,20 @@ nanokelvin = nK = 1e-9*Kelvin
 picokelvin = pK = 1e-12*Kelvin
 femtokelvin = fK = 1e-15*Kelvin
 
+def K_from_F(F):
+    """
+    In: dimensionless number F (degrees Farenheight)
+    Out: dimensionful number in Kelvin
+    """
+    return ((F-32.0)*5./9. + 273.15)*Kelvin
+
+def K_from_C(C):
+    """
+    In: dimensionless number C (degrees Celcius)
+    Out: dimensionful number in Kelvin
+    """
+    return (C + 273.15)*Kelvin
+
 #Derived units
 joule = Joule = J = kg * meter**2 / second**2
 coulomb = Coulomb = C = A*s
@@ -83,6 +97,7 @@ bar = 1e5 * Pa
 psi = 6.8948e3 * Pa
 mTorr = milliTorr = 1e-3*Torr
 mbar = millibar = 1e-3*bar
+mmHg = 1.000000142466321*Torr
 
 TW = 1e12*W
 GW = 1e9*W
