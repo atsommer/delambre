@@ -152,6 +152,7 @@ TeV = 1e12*eV
 inch =2.54*cm
 foot = ft = 12*inch
 mile = mi = 5280*foot
+mph = mi/hr
 mil = 1e-3*inch
 #Volume
 gallon = gal = 231.* inch**3
