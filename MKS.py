@@ -4,8 +4,7 @@ Created on Wed Feb 10 03:50:32 2016
 
 @author: Ariel Sommer
 """
-from .quantity3 import getUnitQuantity
-#from numpy import pi
+from .quantity import getUnitQuantity
 from math import pi
 """
 Define the MKS unit system
