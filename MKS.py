@@ -39,10 +39,13 @@ picosecond = ps = 1e-12*second
 femtosecond = fs = 1e-15*second
 
 min = minute = 60*second
-hr = hour = 60*minute
+hr = hour = hours = 60*minute
 day = 24*hour
 week = 7*day
 solar_year = 365.25*day - 11*minute - 14*second
+Gregorian_year = gregorian_year = 365*day+5*hr+49*min+12*s
+julian_year = 365.25*day
+year= yr= solar_year
 
 Hz = 1.0/second
 kHz = 1e3*Hz
@@ -117,6 +120,7 @@ mu0 = 4.0*pi*1.0e-7 * meter*kg*second**-2*Amp**-2
 epsilon0 = 1.0/(mu0*c**2)
 e = elementary_chage = 1.6021766208e-19 * Coulomb
 
+lightyear =ly = c*julian_year
 
 me = electron_mass = 9.10938356e-31 * kg
 mp = proton_mass = 1.672621777e-27 * kg
@@ -150,7 +154,7 @@ TeV = 1e12*eV
 #Imperial units
 #Distance
 inch =2.54*cm
-foot = ft = 12*inch
+foot = feet = ft = 12*inch
 mile = mi = 5280*foot
 mph = mi/hr
 mil = 1e-3*inch
@@ -161,6 +165,10 @@ fl_oz = 1./128.*gallon
 #Weight
 pound = lb = 0.45359237*kg
 oz = 1./16. * lb
+
+#volume flow rate
+cfm = ft**3/min
+
 
 
 if __name__=="__main__":
