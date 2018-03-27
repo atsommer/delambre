@@ -86,6 +86,9 @@ weber = Weber = Wb = T*m**2 #magnetic flux
 watt = Watt = W = J/s
 liter = Liter = L = 1e-3*m**3
 farad = Farad = F = A*s/V
+uF = 1e-6*F
+nF = 1e-9*F
+pF = 1e-12*F
 ohm = ohms = Ohm = Ohms = V/A
 henry = Henry = H = J/A**2
 
