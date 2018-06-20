@@ -144,7 +144,7 @@ a0 = bohr = hbar/(me*c*alpha)#5.29e-11 * meter #Bohr radius
 RydbergConstant = Rinf = me*e**4/(8*epsilon0**2*h**3*c)
 Ry  = h*c*Rinf
 muB = bohr_magneton = e*hbar/(2*me)
-G = gravitational_constant = 6.67408e-11 *N*m**2/kg**2
+Ggrav = gravitational_constant = 6.67408e-11 *N*m**2/kg**2
 
 mV = 1e-3*V
 kV = 1e3*V
