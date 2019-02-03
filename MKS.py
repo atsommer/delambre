@@ -138,7 +138,7 @@ mK40 = 39.96399848*amu
 mK41 = 40.96182576*amu
 
 alpha = e**2*mu0*c/(4*pi*hbar)
-hartree = me * (e**2/(4*pi*epsilon0*hbar))**2
+hartree = Hartree = me * (e**2/(4*pi*epsilon0*hbar))**2
 #hartree = 4.35974434e-18 * Joule
 a0 = bohr = hbar/(me*c*alpha)#5.29e-11 * meter #Bohr radius
 RydbergConstant = Rinf = me*e**4/(8*epsilon0**2*h**3*c)
@@ -173,6 +173,9 @@ oz = 1./16. * lb
 
 #volume flow rate
 cfm = ft**3/min
+
+#energy
+erg = 1e-7*joule
 
 
 
