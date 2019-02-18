@@ -142,31 +142,6 @@ class Quantity(object):
         return True
         
 
-#    def _cmpf(self,f):
-#        if self.f < f:
-#            return -1
-#        if self.f == f:
-#            return 0
-#        if self.f > f:
-#            return 1
-#            
-#    def __cmp__(self,other):
-#        if _isQuantity(other):
-#            if self._sameUnits(other):
-#                return self._cmpf(other.f)
-#            else:
-#                raise ValueError("Need same units to compare")
-#        elif other == 0:
-#            return self._cmpf(0)
-#        raise ValueError("Unitful quantities can only be compared to other unitful quantities")
-#    
-#    def _comparable(self,other):
-#        if _isQuantity(other):
-#            return self._sameUnits(other)
-#        elif other == 0:
-#            return 1
-#        else:
-#            return 0
     def _getOtherFloat(self,other):
         #For comparison functions
         if _isQuantity(other):
