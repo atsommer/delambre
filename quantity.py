@@ -191,8 +191,8 @@ class Quantity(object):
     def conjugate(self):
         return Quantity(self.f.conjugate(), self.dims, self.units)
             
-    def __str__(self):
-        s=str(self.f)
+    def toString(self, format_spec=""):
+        s=format(self.f, format_spec)
         for i in range(len(self.dims)):
             if self.dims[i]:
                 s += " "+self.units[i]
@@ -200,8 +200,15 @@ class Quantity(object):
                     s += "^"+str(try_int(self.dims[i]))
         return s
         
+    def __str__(self):
+        return self.toString()
+        
+    def __format__(self, format_spec):
+        return self.toString(format_spec)
+                
 #    def __repr__(self):
 #        return "Quantity("+repr(self.f)+","+repr(self.dims)+")"
+
     __repr__ = __str__
 
 def getBasisDims(unitName,units):
