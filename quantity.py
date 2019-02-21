@@ -191,7 +191,7 @@ class Quantity(object):
     def conjugate(self):
         return Quantity(self.f.conjugate(), self.dims, self.units)
             
-    def toString(self, format_spec=""):
+    def toString(self, format_spec="e"):
         s=format(self.f, format_spec)
         for i in range(len(self.dims)):
             if self.dims[i]:
