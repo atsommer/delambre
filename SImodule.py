@@ -65,20 +65,6 @@ year= yr= solar_year
 Hz = 1.0/second
 gram = g = 1e-3*kg
 
-def K_from_F(F):
-    """
-    In: dimensionless number F (degrees Farenheight)
-    Out: dimensionful number in Kelvin
-    """
-    return ((F-32.0)*5./9. + 273.15)*Kelvin
-
-def K_from_C(C):
-    """
-    In: dimensionless number C (degrees Celcius)
-    Out: dimensionful number in Kelvin
-    """
-    return (C + 273.15)*Kelvin
-
 #Derived units
 joule = Joule = J = kg * meter**2 / second**2
 coulomb = Coulomb = C = A*s
@@ -88,29 +74,29 @@ tesla = Tesla = T = N/(A*m)
 Gauss = gauss = 1e-4*T
 weber = Weber = Wb = T*m**2 #magnetic flux
 watt = Watt = W = J/s
-liter = Liter = litre = Litre = L = 1e-3*m**3
+liter = Liter = litre = Litre = L =l= 1e-3*m**3
 cc = (1e-2*m)**3
 farad = Farad = F = A*s/V
 
 ohm = ohms = Ohm = Ohms = V/A
-henry = Henry = H = J/A**2
-Debye = debye = D = 1./299792458.0 *1e-21 * C * m 
+henry = Henry = H = J/A**2 #inductance
+Debye = debye = D = 1./299792458.0 *1e-21 * C * m  #electric dipole moment
 
 #Pressure
 Pascal = Pa = N/m**2
 atm = standard_atmosphere = 1.01325e5 * Pa
-Torr = 1./760. * atm
-bar = 1e5 * Pa
+Torr = torr =  1./760. * atm
+Bar = bar = 1e5 * Pa
 psi = 6.8948e3 * Pa
 mmHg = 1.000000142466321*Torr
 
 ## Physical constants
-boltzmann = kB = 1.380653e-23 * Joule / Kelvin
+boltzmann = kb =kB = 1.380653e-23 * Joule / Kelvin
 hbar = 1.054571800e-34 * kg * meter**2 / second
 planck = hPlanck = h = 2*pi*hbar
 c = speedoflight = 299792458.0 * meter / second
 mu0 = 4.0*pi*1.0e-7 * meter*kg*second**-2*Amp**-2
-epsilon0 = 1.0/(mu0*c**2)
+epsilon0 = eps0 = 1.0/(mu0*c**2)
 e = elementary_chage = 1.6021766208e-19 * Coulomb
 
 lightyear =ly = c*julian_year
@@ -128,16 +114,13 @@ mK40 = 39.96399848*amu
 mK41 = 40.96182576*amu
 
 alpha = e**2*mu0*c/(4*pi*hbar)
-hartree = Hartree = me * (e**2/(4*pi*epsilon0*hbar))**2
+hartree = Ha =Hartree = me * (e**2/(4*pi*epsilon0*hbar))**2
 #hartree = 4.35974434e-18 * Joule
 a0 = bohr = hbar/(me*c*alpha)#5.29e-11 * meter #Bohr radius
 RydbergConstant = Rinf = me*e**4/(8*epsilon0**2*h**3*c)
 Ry  = Rydberg = h*c*Rinf
 muB = bohr_magneton = e*hbar/(2*me)
-Ggrav = gravitational_constant = 6.67408e-11 *N*m**2/kg**2
-
-mV = 1e-3*V
-kV = 1e3*V
+Ggrav =gravitational_constant = 6.67408e-11 *N*m**2/kg**2
 
 eV = e*V
 
@@ -145,11 +128,11 @@ eV = e*V
 #Distance
 inch = 2.54e-2*m
 foot = feet = ft = 12*inch
-mile = mi = 5280*foot
+mile = miles = mi = 5280*foot
 mph = mi/hr
 mil = 1e-3*inch
 #Volume
-gallon = gal = 231.* inch**3
+gallon =  gal = 231.* inch**3
 quart = qt = 1./4.*gallon
 fl_oz = 1./128.*gallon
 #Weight
@@ -162,6 +145,21 @@ cfm = ft**3/min
 #energy
 erg = 1e-7*joule          
           
+
+def K_from_F(F):
+    """
+    In: dimensionless number F (degrees Farenheight)
+    Out: dimensionful number in Kelvin
+    """
+    return ((F-32.0)*5./9. + 273.15)*Kelvin
+
+def K_from_C(C):
+    """
+    In: dimensionless number C (degrees Celcius)
+    Out: dimensionful number in Kelvin
+    """
+    return (C + 273.15)*Kelvin
+
 
 
 class SIclass(object):
@@ -179,3 +177,6 @@ if __name__=="__main__":
     print SI.ym
     print SI.GHz
     print SI.microgram
+    print SI.Gigayear
+    print SI.centipound
+    print SI.Megapsi
