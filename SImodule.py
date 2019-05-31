@@ -102,8 +102,6 @@ atm = standard_atmosphere = 1.01325e5 * Pa
 Torr = 1./760. * atm
 bar = 1e5 * Pa
 psi = 6.8948e3 * Pa
-#mTorr = milliTorr = 1e-3*Torr
-#mbar = millibar = 1e-3*bar
 mmHg = 1.000000142466321*Torr
 
 ## Physical constants
