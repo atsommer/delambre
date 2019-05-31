@@ -192,7 +192,10 @@ class Quantity(object):
         return Quantity(self.f.conjugate(), self.dims, self.units)
             
     def toString(self, format_spec="e"):
-        s=format(self.f, format_spec)
+        if hasattr(self.f,"__getitem__"):#array-like
+            s=str(self.f)
+        else:
+            s=format(self.f, format_spec)
         for i in range(len(self.dims)):
             if self.dims[i]:
                 s += " "+self.units[i]
