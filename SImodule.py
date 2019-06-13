@@ -6,7 +6,7 @@ Created on Thursday, May 30, 2019
 """
 try:
     from .quantity import getUnitQuantity
-except ValueError:
+except:
     from quantity import getUnitQuantity
 from math import pi
 """
@@ -174,9 +174,9 @@ class SIclass(object):
 SI = SIclass()
 
 if __name__=="__main__":
-    print SI.ym
-    print SI.GHz
-    print SI.microgram
-    print SI.Gigayear
-    print SI.centipound
-    print SI.Megapsi
+    print( SI.ym )
+    print( SI.GHz)
+    print( SI.microgram)
+    print( SI.Gigayear)
+    print( SI.centipound)
+    print( SI.Megapsi)
