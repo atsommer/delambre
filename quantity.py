@@ -11,7 +11,8 @@ this will save space and allow non-dimensionalization of numpy arrays
 
 @author: Ariel Sommer
 """
-import inspect
+#import inspect
+import numbers
 
 def _isQuantity(v):
         return hasattr(v,"IS_QUANTITY")
@@ -44,7 +45,7 @@ class Quantity(object):
             raise ValueError("Dimension mismatch")
         self.f=factor
         self.dims=[d for d in dims]
-        self.units=units # a list of strings giving the names of the dimensions
+        self.units=[_ for _ in units] # a list of strings giving the names of the dimensions
         self.IS_QUANTITY = True
         
     def dimensionless(self):
@@ -111,15 +112,18 @@ class Quantity(object):
             if self._sameUnits(other):
                 return Quantity(self.f+other.f, self.dims,self.units)
             else:
-                raise ValueError("Quantity addition--unit systems must agree "+str(other)+"\n"+str(self))
-        elif hasattr(other,"__len__"):#array-like
-            if hasattr(other,"dtype"):#numpy array
-                return other+self
-            else:
-                return [self+o for o in other]
+                raise ValueError("Quantity addition--units must agree "+str(other)+"\n"+str(self))
+#        elif self.dimensionless():
+#            return Quantity(self.f+other, self.dims,self.units)
+#        else:
+#            raise ValueError("Quantity addition--can't add dimensionless )
+        elif isinstance(other,list):
+            return [self+o for o in other]
+        elif hasattr(other,"dtype"):#numpy array
+                return other+self #let the array perform element-wise addition
         elif other == 0.0:
             return Quantity(self.f, self.dims, self.units)
-        elif not any(self.dims): #dimensionless
+        elif isinstance(other, numbers.Number) and self.dimensionless():
             return Quantity(self.f + other, self.dims, self.units)
         else:
             raise ValueError("Quantity addition--units must agree "+str(other)+"\n"+str(self))
