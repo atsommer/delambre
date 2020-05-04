@@ -1,7 +1,7 @@
 ## delambre
 A pure python package for numbers with units that are compatible with lists and numpy arrays, and behave intuitively.
 
-To use the package, you import Delambre.MKS. The MKS module describes physical quantities using SI units as the underlying representation, but you can work with quantities in other units as well.
+To use the package, you import delambre.SI. The SI module describes physical quantities using SI units as the underlying representation, but you can work with quantities in other units as well.
 
 Example 1: Convert kilometers to miles:
 ```python
