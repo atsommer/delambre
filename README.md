@@ -5,7 +5,7 @@ To use the package, you import Delambre.MKS. The MKS module describes physical q
 
 Example 1: Convert kilometers to miles:
 ```python
-  >>> import Delambre.MKs as u
+  >>> from delambre import SI as u
   >>> x = 5*u.km
   >>> x/u.mi
   3.1068559611866697
